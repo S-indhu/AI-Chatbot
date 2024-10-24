@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Chatbot</title>
+    <link rel="stylesheet" href="/static/styles.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+    <div class="chat-container">
+        <div class="chat-header">
+            <h2>AI Chatbot</h2>
+        </div>
+        <div class="chat-box" id="chat-box">
+            <!-- Messages will be added here dynamically -->
+        </div>
+        <div class="chat-input">
+            <input type="text" id="user-input" placeholder="Type your message..." autocomplete="off">
+            <button id="send-btn">Send</button>
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            $('#send-btn').click(function() {
+                var message = $('#user-input').val();
+                if (message) {
+                    $('#chat-box').append('<div class="message user-message">' + message + '</div>');
+                    $('#user-input').val('');
+
+                    // Send the message to the backend
+                    $.ajax({
+                        url: '/chat',
+                        method: 'POST',
+                        contentType: 'application/json',
+                        data: JSON.stringify({ message: message }),
+                        success: function(response) {
+                            $('#chat-box').append('<div class="message bot-message">' + response.response + '</div>');
+                            $('#chat-box').scrollTop($('#chat-box')[0].scrollHeight);
+                        },
+                        error: function() {
+                            $('#chat-box').append('<div class="message bot-message">Error occurred. Please try again later.</div>');
+                        }
+                    });
+                }
+            });
+
+            // Enable 'Enter' key to send message
+            $('#user-input').keypress(function(e) {
+                if (e.which == 13) {
+                    $('#send-btn').click();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
