@@ -9,37 +9,9 @@ Python: Backend server using Flask or FastAPI for managing API calls and routing
 API: Uses Gemini or other LLM APIs for AI interaction.
 HTML5 & CSS3: Front-end interface for smooth user interaction.
 JavaScript (Optional): To add interactive features like real-time input suggestions.
-Installation
-Clone the repository:
 
-bash
-Copy code
-git clone https://github.com/yourusername/AI-Personal-ChatGPT.git
-cd AI-Personal-ChatGPT
-Create a virtual environment and activate it:
 
-bash
-Copy code
-python -m venv venv
-source venv/bin/activate # On Windows, use `venv\Scripts\activate`
-Install dependencies:
 
-bash
-Copy code
-pip install -r requirements.txt
-Add your API keys (e.g., from Gemini API):
-
-Create a .env file in the root directory.
-Add your API key:
-env
-Copy code
-GEMINI_API_KEY=your_api_key_here
-Run the Python backend server:
-
-bash
-Copy code
-python app.py
-Open index.html to start interacting with the chatbot.
 
 Project Structure
 bash
